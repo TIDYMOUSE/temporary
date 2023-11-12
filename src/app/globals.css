@@ -1,27 +1,43 @@
+/* styles.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Your custom styles here */
+
+
+body{
+    @apply bg-primary
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@keyframes underlineExpand {
+    0% {
+        transform: scaleX(0);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.underline-animation {
+    @apply cursor-pointer relative text-white ;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -5px;
+        height: 2px;
+        background-color: transparent;
+        transform-origin: 50% 100%;
+        transform: scaleX(0);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    &:hover::before {
+        background-color: #27EDED;
+        animation: underlineExpand 0.3s ease forwards;
+    }
 }
